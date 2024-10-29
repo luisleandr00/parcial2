@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container body-container  justify-content-center align-items-center">
+  <a th:href="@{/vehiculos/add}" class="btn btn-primary">Añadir clase</a>
+  <div th:if="${vehiculos!= null and !vehiculos.empty}">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">placa</th>
+        <th scope="col">HoraEntrada</th>
+        <th scope="col">HoraSalida</th>
+        <th scope="col">Ubicacion</th>
+        <th scope="col">Tipos</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="vehiculos : ${vehiculos}">
+        <td th:text="${vehiculos.name}"></td>
+        <td th:text="${vehiculos.horaEntrada}"></td>
+        <td th:text="${vehiculos.horaSalida}"></td>
+        <td th:text="${vehiculos.ubicacion}"></td>
+        <td th:text="${vehiculos.tipos.name}"></td>
+        <td>
+          <a th:href="@{/vehiculos/modify/} + ${vehiculos.id}"><input type="button" class="btn btn-primary" th:value="Modificar"></a>
+          <a th:href="@{/vehiculos/delete/} + ${vehiculos.id}"><input type="button" class="btn btn-danger" th:value="Eliminar"
+                                                                  onclick="if (!confirm('¿Estás seguro de eliminar esta clase?'))
+                                                                                     return false;"></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div th:if="${vehiculos == null or vehiculos.empty}">
+    <div class="card col-8 align-items-center text-center">
+      <div class="card-body">
+        <h1 class="card-title">No hay Clases Registradas</h1>
+      </div>
+    </div>
+  </div>
+</div>
+</
+</body>
+</html>
